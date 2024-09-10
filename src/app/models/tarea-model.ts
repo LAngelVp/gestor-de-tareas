@@ -6,7 +6,6 @@ export interface TareaModel {
     prioridad: string;
     estado: string;
     responsable: string;
-    progreso: string;
     resultado_esperado: string;
     visible: boolean;
 }

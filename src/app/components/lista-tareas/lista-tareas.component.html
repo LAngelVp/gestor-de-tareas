@@ -1,24 +1,62 @@
-
-<div *ngFor="let item of lista_tareas; let posicion = index">
-    <div class="card mb-3">
-        <div class="card-header d-flex justify-content-between">
-            <h4 class="d-flex align-items-center m-0 me-2 p-0">
-                {{item.nombre_tarea | uppercase}}
-            </h4>
-            <div class="d-flex gap-2">
-                <button class="btn btn-danger" (click)="eliminar_elemento(posicion)">
-                    <i class="bi bi-trash3-fill"></i>
-                </button>
-                <button class="btn btn-success">
-                    <i class="bi bi-check2-circle"></i>
-                </button>
-                <button class="btn btn-primary" (click)="item.visible = !item.visible">
-                    <i class="bi bi-eye-fill"></i>
-                </button>
+<div>
+    <h4 class="titulo_text">
+        Tareas
+    </h4>
+    <div *ngFor="let item of lista_tareas; let posicion = index">
+        <div class="card mb-3">
+            <div class="d-flex justify-content-between px-3 pt-1">
+                <div>
+                    <span class=" bg-success px-3 rounded rounded-5 fw-bold text-white">
+                        {{item.fecha_inicio}}
+                    </span>
+                </div>
+                <div>
+                    <span class="fw-bold">
+                        {{item.prioridad}}
+                    </span>
+                </div>
+                <div>
+                    <span class="bg-danger px-3 rounded rounded-5 fw-bold text-white">
+                        {{item.fecha_vencimiento}}
+                    </span>
+                </div>
             </div>
-        </div>
-        <div class="card-body" [hidden]="item.visible">
-            {{item.descripcion}}
+            <div class="card-header d-flex justify-content-between">
+                <h4 class="d-flex align-items-center m-0 me-2 p-0">
+                    {{item.nombre_tarea | uppercase}}
+                </h4>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-danger" (click)="eliminar_elemento(posicion)">
+                        <i class="bi bi-trash3-fill"></i>
+                    </button>
+                    <button class="btn btn-primary" (click)="item.visible = !item.visible">
+                        <i class="bi bi-eye-fill"></i>
+                    </button>
+                    <select [(ngModel)]="item.estado" (ngModelChange)="actualizar_esado_tarea(item)" class="form-control text-center fw-bold select_estado" [ngClass]="{'bg-light': item.estado == 'Sin iniciar', 'bg-warning': item.estado == 'En Proceso', 'bg-success': item.estado == 'Completada'}">
+                        <option value="Sin Iniciar">Sin Iniciar</option>
+                        <option value="En Proceso">En Proceso</option>
+                        <option value="Completada">Completada</option>
+                    </select>
+                </div>
+            </div>
+            <div class="card-body" [hidden]="item.visible">
+                <div class="border-bottom py-3">
+                    <span>
+                        Responsable: 
+                        <span class=" text-muted bg-body-secondary px-4 py-1 rounded-3">
+                            {{item.responsable}}
+                        </span>
+                    </span>
+                </div>
+                <div>
+                    <p class="fs-5">
+                        Comentarios de la tarea:
+                    </p>
+                    <cite class="fs-6">
+                        {{item.descripcion | lowercase}}
+                    </cite>
+                </div>
+            </div>
         </div>
     </div>
 </div>

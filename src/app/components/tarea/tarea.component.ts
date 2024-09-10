@@ -14,6 +14,11 @@ export class TareaComponent implements OnInit, AfterViewInit {
   lista_tareas_local : TareaModel[] = [];
   @ViewChild('nombre_tarea') nombre_tarea_ref !: ElementRef<HTMLInputElement>
   @ViewChild('descripcion_tarea') descripcion_tarea_ref !: ElementRef<HTMLTextAreaElement>
+  @ViewChild('fecha_inicio') fecha_inicio_ref !: ElementRef<HTMLInputElement>
+  @ViewChild('fecha_vencimiento') fecha_vencimiento_ref  !: ElementRef<HTMLInputElement>
+  @ViewChild('prioridad') prioridad_ref !: ElementRef<HTMLSelectElement>
+  @ViewChild('responsable') responsable_ref !: ElementRef<HTMLInputElement>
+  @ViewChild('resultado_esperado') resultado_esperado_ref !: ElementRef<HTMLTextAreaElement>
 
   constructor(
     private local_storage : ServicioLocalStorageService
@@ -32,18 +37,23 @@ export class TareaComponent implements OnInit, AfterViewInit {
   agregar_tarea(){
     const nombre = this.nombre_tarea_ref.nativeElement.value;
     const descripcion = this.descripcion_tarea_ref.nativeElement.value;
-    if (nombre && descripcion){
+    const fechaInicio = this.fecha_inicio_ref.nativeElement.value;
+    const fechaVencimiento = this.fecha_vencimiento_ref.nativeElement.value;
+    const prioridadTarea = this.prioridad_ref.nativeElement.value;
+    const responsableTarea = this.responsable_ref.nativeElement.value;
+    const resultadoEsperadoTarea = this.resultado_esperado_ref.nativeElement.value;
+    console.log(fechaInicio)
+    if (nombre && descripcion && fechaInicio && fechaVencimiento && prioridadTarea && responsableTarea && responsableTarea){
       const tarea: TareaModel =
         {
           nombre_tarea: nombre.trim(),
           descripcion: descripcion.trim(),
-          fecha_inicio: '',
-          fecha_vencimiento: '',
-          prioridad: '',
-          estado: '',
-          responsable: '',
-          progreso: '',
-          resultado_esperado: '',
+          fecha_inicio: fechaInicio,
+          fecha_vencimiento: fechaVencimiento,
+          prioridad: prioridadTarea,
+          estado: 'Sin Iniciar',
+          responsable: responsableTarea,
+          resultado_esperado: resultadoEsperadoTarea,
           visible: true
         }
       
@@ -67,6 +77,4 @@ export class TareaComponent implements OnInit, AfterViewInit {
       this.nombre_tarea_ref.nativeElement.focus();
     }, 100);
   }
-
-
 }

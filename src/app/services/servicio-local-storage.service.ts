@@ -31,4 +31,15 @@ export class ServicioLocalStorageService {
     }
   }
 
+  actualizar_elemento(tareaActualizada: TareaModel): void {
+    const tareas = this.mostrar_elementos();
+    const index = tareas.findIndex(tarea => tarea.nombre_tarea === tareaActualizada.nombre_tarea);
+    if (index !== -1) {
+      tareas[index] = tareaActualizada;
+      localStorage.setItem(this.keyTarea, JSON.stringify(tareas));
+    } else {
+      console.error("Tarea no encontrada para actualización.");
+    }
+  }
+
 }
