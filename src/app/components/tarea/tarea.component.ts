@@ -37,6 +37,13 @@ export class TareaComponent implements OnInit, AfterViewInit {
         {
           nombre_tarea: nombre.trim(),
           descripcion: descripcion.trim(),
+          fecha_inicio: '',
+          fecha_vencimiento: '',
+          prioridad: '',
+          estado: '',
+          responsable: '',
+          progreso: '',
+          resultado_esperado: '',
           visible: true
         }
       

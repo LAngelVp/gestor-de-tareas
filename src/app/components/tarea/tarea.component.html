@@ -6,6 +6,28 @@
         <div class="card-group">
             <textarea class="form-control" placeholder="Descripción de la tarea" #descripcion_tarea></textarea>
         </div>
+        <div class="card-group">
+            <label  class="form-label" for="">Fecha de inicio</label>
+            <input class="form-control" type="date" #fecha_inicio>
+        </div>
+        <div class="card-group">
+            <label class="form-label" for="">Fecha de vencimiento</label>
+            <input class="form-control" type="date" #fecha_vencimiento>
+        </div>
+        <div class="card-group">
+            <select class="form-select" #prioridades>
+                <option value="">Prioridad</option>
+                <option value="Alta">Alta</option>
+                <option value="Media">Media</option>
+                <option value="Baja">Baja</option>
+            </select>
+        </div>
+        <div class="card-group">
+            <input class=" form-control" type="text" placeholder="Responsable" #responsable>
+        </div>
+        <div class="card-group">
+            <textarea class="form-control" placeholder="Resultado esperado" #resultado_esperado></textarea>
+        </div>
         <button class="btn btn-primary fw-bold">
             <i class="bi bi-plus-circle-fill"></i>
             Agregar
