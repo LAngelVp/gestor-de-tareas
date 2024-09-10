@@ -1,8 +1,23 @@
 <div>
-    <h4 class="titulo_text">
-        Tareas
-    </h4>
-    <div *ngFor="let item of lista_tareas; let posicion = index">
+    <div>
+        <div class=" position-relative">
+            <h4 class="titulo_text">
+                Tareas
+            </h4>
+            <span class="badge bg-primary">
+                {{totalTareasFiltradas}}
+            </span>
+        </div>
+        <div class="mb-3">
+            <select (change)="cambiarFiltro($event)" class="form-control">
+                <option value="Todos">Todos</option>
+                <option value="Completada">Completada</option>
+                <option value="En Proceso">En Proceso</option>
+                <option value="Sin Iniciar">Sin Iniciar</option>
+            </select>
+        </div>
+    </div>
+    <div *ngFor="let item of tareas_filtradas; let posicion = index">
         <div class="card mb-3">
             <div class="d-flex justify-content-between px-3 pt-1">
                 <div>
@@ -32,7 +47,9 @@
                     <button class="btn btn-primary" (click)="item.visible = !item.visible">
                         <i class="bi bi-eye-fill"></i>
                     </button>
-                    <select [(ngModel)]="item.estado" (ngModelChange)="actualizar_esado_tarea(item)" class="form-control text-center fw-bold select_estado" [ngClass]="{'bg-light': item.estado == 'Sin iniciar', 'bg-warning': item.estado == 'En Proceso', 'bg-success': item.estado == 'Completada'}">
+                    <select [(ngModel)]="item.estado" (ngModelChange)="actualizar_esado_tarea(item)"
+                        class="form-control text-center fw-bold select_estado"
+                        [ngClass]="{'bg-light': item.estado == 'Sin iniciar', 'bg-warning': item.estado == 'En Proceso', 'bg-success': item.estado == 'Completada'}">
                         <option value="Sin Iniciar">Sin Iniciar</option>
                         <option value="En Proceso">En Proceso</option>
                         <option value="Completada">Completada</option>
@@ -42,7 +59,7 @@
             <div class="card-body" [hidden]="item.visible">
                 <div class="border-bottom py-3">
                     <span>
-                        Responsable: 
+                        Responsable:
                         <span class=" text-muted bg-body-secondary px-4 py-1 rounded-3">
                             {{item.responsable}}
                         </span>
